@@ -7,13 +7,16 @@ const createReceipt = async (req, res) => {
     const { productId } = req.body;
 
     const product = await Product.findByPk(productId);
+
+    if (!productId) {
+      return res.status(400).json({ error: "productId is required" });
+    }
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
 
     const total = product.price;
     const receipt = await Receipt.create({ total });
-    res.status(201).json(receipt);
 
     await ProductInReceipt.create({
       ReceiptId: receipt.id,
@@ -21,6 +24,8 @@ const createReceipt = async (req, res) => {
       quantity: 1,
       price: product.price,
     });
+
+    res.status(201).json(receipt);
 
   } catch (error) {
     console.error(error);
@@ -32,6 +37,10 @@ const addProductToReceipt = async (req, res) => {
   try {
     const { receiptId } = req.params;
     const { productId } = req.body;
+
+    if (!productId) {
+      return res.status(400).json({ error: "productId is required" });
+    }
 
     const receipt = await Receipt.findByPk(receiptId);
     const product = await Product.findByPk(productId);
@@ -69,12 +78,19 @@ const changeProductQuantity = async (req, res) => {
     const { action, quantity } = req.body;
 
     const receipt = await Receipt.findByPk(receiptId);
+    if (!receipt) {
+      return res.status(404).json({ error: "Receipt not found" });
+    }
+
     const productInReceipt = await ProductInReceipt.findOne({
       where: { ReceiptId: receiptId, ProductId: productId },
     });
-
     if (!productInReceipt) {
       return res.status(404).json({ error: "Product not found in receipt" });
+    }
+
+    if ( typeof quantity !== "number" || (quantity <= -1)) {
+      return res.status(400).json({ error: "Invalid quantity" });
     }
 
     if (action === "add") {
@@ -83,9 +99,10 @@ const changeProductQuantity = async (req, res) => {
       productInReceipt.quantity -= quantity;
     } else if (action === "update") {
       productInReceipt.quantity = quantity;
-    } else if (action === "delete") {
+    } else if ((quantity === 0) || (action === "delete")) {
       receipt.total -= (productInReceipt.price * productInReceipt.quantity);
       await receipt.save();
+      
       await productInReceipt.destroy();
       return res.json({ message: "Product removed from receipt" });
 
@@ -113,8 +130,33 @@ const changeProductQuantity = async (req, res) => {
   }
 };
 
+  const closeReceipt = async (req, res) => {
+    try {
+      const { receiptId } = req.body;
+      if (!receiptId) {
+        return res.status(400).json({ error: 'receiptId is required' });
+      }
+
+      const receipt = await Receipt.findByPk(receiptId);
+      if (!receipt) {
+        return res.status(405).json({ error: 'Receipt not found' });
+      }else if (receipt.date) {
+        return res.status(400).json({ error: 'Receipt is already closed' });
+      }
+
+      receipt.date = Date.now();
+      await receipt.save();
+
+      res.json(receipt);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  }
+
 module.exports = {
   createReceipt,
   addProductToReceipt,
   changeProductQuantity,
+  closeReceipt
 };
