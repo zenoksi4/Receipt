@@ -21,6 +21,7 @@ Product.hasMany(ProductInReceipt);
 ProductInReceipt.belongsTo(Product);
 
 app.use('/api/products', require('./routes/productsRoute'))
+app.use('/api/receipts', require('./routes/receiptsRoute'))
 
 sequelize
   .sync()

@@ -5,12 +5,11 @@ const Receipt = sequelize.define('Receipt', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: false,
+    autoIncrement: true,
   },
   number: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-    autoIncrement: true,
+    allowNull: true,
     unique: true,
   },
   date: {
@@ -23,6 +22,15 @@ const Receipt = sequelize.define('Receipt', {
   },
 }, {
   timestamps: false,
+});
+
+Receipt.addHook('beforeCreate', async (receipt) => {
+  const lastReceipt = await Receipt.findOne({
+    order: [['number', 'DESC']],
+  });
+
+  const nextNumber = lastReceipt ? lastReceipt.number + 1 : 1;
+  receipt.number = nextNumber;
 });
 
 module.exports = Receipt;
