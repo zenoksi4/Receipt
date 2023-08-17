@@ -5,15 +5,17 @@ const Receipt = sequelize.define('Receipt', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
+    autoIncrement: false,
   },
   number: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    autoIncrement: true,
+    unique: true,
   },
   date: {
     type: DataTypes.DATE,
-    allowNull: false,
+    allowNull: true,
   },
   total: {
     type: DataTypes.DECIMAL(10, 2),

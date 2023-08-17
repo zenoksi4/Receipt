@@ -20,11 +20,13 @@ ProductInReceipt.belongsTo(Receipt);
 Product.hasMany(ProductInReceipt);
 ProductInReceipt.belongsTo(Product);
 
+app.use('/api/products', require('./routes/productsRoute'))
+
 sequelize
   .sync()
   .then(init())
   .then(() => {
-    app.listen(3000, () => {
+    app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
     });
   });
