@@ -1,0 +1,10 @@
+.ReceiptContainer{
+    display: flex;
+    box-shadow: 0 0 20px rgb(0 0 0 / 15%);
+    width: 55%;
+    border-radius: 5px;
+    height: 100%;
+    background-color: #f3f3f37b;
+    color: #000;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,17 @@
+.listContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgb(0 0 0 / 15%);
+    width: 40%;
+    height: 100%;
+    background-color: #f3f3f37b;
+    color: #000;
+    text-overflow: ellipsis;
+    border-radius: 5px;
+    overflow: auto; 
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f0f0f0;
+
+}
+

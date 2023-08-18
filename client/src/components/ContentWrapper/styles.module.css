@@ -1,0 +1,14 @@
+.pageWrapper{
+    display: flex;
+    height: 100vh;
+    min-width: 100vh;
+    background: #667db6; 
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+}
+.contentWrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 20px; 
+}

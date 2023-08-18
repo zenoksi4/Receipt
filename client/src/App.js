@@ -1,9 +1,13 @@
+import ContentWrapper from "./components/ContentWrapper";
+import ProductsList from "./components/ProductsList";
+import ReceiptContainer from "./components/ReceiptContainer";
 
 function App() {
   return (
-    <div>
-      123
-    </div>
+    <ContentWrapper>
+      <ProductsList/>
+      <ReceiptContainer/>
+    </ContentWrapper>
   );
 }
 
