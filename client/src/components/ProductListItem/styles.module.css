@@ -7,7 +7,12 @@
     padding: 10px 10px;
     max-height: 100px;
     border-top: 1px solid rgba(226, 226, 226, 0.74);
+    cursor: pointer;
+    user-select: none;
 
+}
+.listItem:hover{
+    background-color: rgba(240, 255, 255, 0.364);
 }
 
 .itemTitle{
