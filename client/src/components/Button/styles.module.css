@@ -1,0 +1,35 @@
+
+.button{
+    color: #fff;
+    box-shadow: 0 0 40px 40px #6487df inset, 0 0 0 0 #6487df;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #6487df;
+    border-radius: 0.6em;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.button:hover {
+    box-shadow: 0 0 10px 0 #6487df inset, 0 0 10px 4px #6487df;
+    color: #ffffffff;
+}

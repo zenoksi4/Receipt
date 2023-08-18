@@ -1,5 +1,6 @@
-.ReceiptContainer{
+.receiptContainer{
     display: flex;
+    flex-direction: column;
     box-shadow: 0 0 20px rgb(0 0 0 / 15%);
     width: 55%;
     border-radius: 5px;
@@ -7,4 +8,39 @@
     background-color: #f3f3f37b;
     color: #000;
     text-overflow: ellipsis;
+
+}
+.receiptItemsContainer{
+    height: 100%;
+    overflow: auto; 
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f0f0f0;
+}
+
+.receiptFooter{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 50px;
+    height: 100px;
+    border-radius: 0 0 5px 5px;
+    background-color: rgba(240, 255, 255, 0.364);
+}
+.receiptFooter :first-child{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.receiptButton{
+    padding: 10px;
+}
+
+.receiptTitles{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+    font-weight: bold;
+    font-size: 20px;
 }
