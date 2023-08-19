@@ -25,6 +25,8 @@
     box-shadow: 0 0 20px rgb(0 0 0 / 15%);
     font-weight: bold;
     cursor: pointer;
+    user-select: none;
+
 }
 
 .icons:hover{

@@ -1,27 +1,22 @@
 const Product = require("../models/Product");
 
-
 const init = async () => {
-    // Check if the Products table is empty
-    const productCount = await Product.count();
-    if (productCount === 0) {
-      // If empty, insert some example products
-      const exampleProducts = [
-        { name: 'Пельмені "Домашні" АЙС', price: 10.99 },
-        { name: 'Пельмені "Курячі"', price: 20.49 },
-        { name: 'Вареники з сиром', price: 20.49 },
-        { name: 'Вареники з картоплею', price: 20.49 },
-        { name: 'Картопля по селянськи', price: 20.49 },
-        { name: 'Пельмені "стрийзькі"', price: 20.49 },
-        { name: 'Курзе "По Кавказьки"', price: 20.49 },
-        { name: 'Равіолі "ГОСТинчик" вагові', price: 20.49 },
-        { name: 'Борщ "Класичний"', price: 20.49 },
-        { name: 'Бограч "Західний"', price: 20.49 },
-        // ... add more products as needed
-      ];
-      await Product.bulkCreate(exampleProducts);
-    }
-  
+  const productCount = await Product.count();
+  if (productCount === 0) {
+    const exampleProducts = [
+      { name: 'Пельмені "Домашні" АЙС', price: 100 },
+      { name: 'Пельмені "Курячі"', price: 150.5 },
+      { name: "Вареники з сиром", price: 203.5 },
+      { name: "Вареники з картоплею", price: 180 },
+      { name: "Картопля по селянськи", price: 105.5 },
+      { name: 'Пельмені "стрийзькі"', price: 134 },
+      { name: 'Курзе "По Кавказьки"', price: 168 },
+      { name: 'Равіолі "ГОСТинчик" вагові', price: 210 },
+      { name: 'Борщ "Класичний"', price: 205 },
+      { name: 'Бограч "Західний"', price: 198 },
+    ];
+    await Product.bulkCreate(exampleProducts);
   }
+};
 
-  module.exports = init;
+module.exports = init;

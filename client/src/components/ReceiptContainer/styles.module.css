@@ -37,6 +37,11 @@
     padding: 10px;
 }
 
+.receiptButtonDisable{
+    opacity: 0.7;
+    cursor: none;
+}
+
 .receiptTitles{
     display: flex;
     justify-content: space-between;
